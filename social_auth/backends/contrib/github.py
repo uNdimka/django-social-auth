@@ -46,6 +46,9 @@ class GithubBackend(OAuthBackend):
         ('expires', 'expires')
     ]
 
+    def get_user_id(self, details, response):
+        return details.get('username') or response.get('id')
+
     def get_user_details(self, response):
         """Return user details from Github account"""
         return {'username': response.get('login'),
